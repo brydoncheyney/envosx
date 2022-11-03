@@ -23,6 +23,7 @@ ZSH_THEME='basic'
 plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
+  ssh-agent
 )
 
 source "${ZSH}/oh-my-zsh.sh"
