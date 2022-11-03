@@ -1,5 +1,8 @@
-install: shell ssh gpg git aws kubernetes vim vscode zsh python go
+install: shell ssh gpg git aws kubernetes vim vscode zsh python go npm
 update: install
+
+core: shell ssh git vim zsh
+lang: python go npm
 
 check:
 	shellcheck -x *-install
@@ -29,6 +32,10 @@ kubernetes:
 	@./kubernetes-install
 
 k8s: kubernetes
+
+npm:
+	@echo "#### Installing ${@}..."
+	@./npm-install
 
 python:
 	@echo "#### Installing ${@}..."
