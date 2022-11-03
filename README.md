@@ -40,7 +40,7 @@ make install
 - [homebrew](https://brew.sh/)
 - [kubernetes](https://kubernetes.io/)
 - [python](https://www.python.org/)
-- [go](ihttps://go.dev/)
+- [go](https://go.dev/)
 - [vim](https://www.vim.org/)
 - [vscode](https://code.visualstudio.com/)
 - [zsh](http://www.zsh.org/)/[ohmyzsh](https://ohmyz.sh/)
