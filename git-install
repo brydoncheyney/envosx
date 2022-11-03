@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+. functions
+
+install git git-crypt
+
+git config --global --replace-all alias.ci commit
+git config --global --replace-all alias.co checkout
+git config --global --replace-all alias.st status
+git config --global --replace-all alias.l1 "log --oneline"
+git config --global --replace-all alias.l "log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset%C(yellow)%d%Creset %s'"
+git config --global --replace-all alias.recent "branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)'"
+
+git config --global --replace-all user.email "brydon@remission.org.uk"
+git config --global --replace-all user.name "Brydon Cheyney"
+
+git config --global --replace-all init.defaultbranch main
+git config --global --replace-all gpg.program "$(which gpg)"
+
+mkdir -p ~/work

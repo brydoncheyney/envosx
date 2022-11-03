@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+. functions
+
+cask iterm2
+install coreutils gnu-sed gnu-tar jq ncdu shellcheck tree watch wget gawk gnu-time gcc ag fzf
+install asciinema ffmpeg

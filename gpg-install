@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+. functions
+
+path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+install gnupg pinentry-mac
+
+# dotfiles
+mkdir -p "${HOME}/.gnupg"
+ln -fs "${path}/gpg.conf" "${HOME}/.gnupg/gpg.conf"
+ln -fs "${path}/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
+
+git config --global gpg.program "$(which gpg)"

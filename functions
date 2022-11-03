@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+BREW=/opt/homebrew/bin/brew
+
+function install() {
+  for package in $@; do
+    if "${BREW}" ls --versions ${package} &> /dev/null; then
+      "${BREW}" upgrade ${package}
+    else
+      "${BREW}" install ${package}
+    fi
+  done
+}
+
+function cask() {
+  for package in $@; do
+    if "${BREW}" cask ls --versions ${package} &> /dev/null; then
+      "${BREW}" reinstall --cask ${package}
+    else
+      "${BREW}" install --cask ${package}
+    fi
+  done
+}

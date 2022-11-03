@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+. functions
+path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# zsh
+"${BREW}" install zsh
+
+# ohmyzsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+packages=(zsh-users/zsh-autosuggestions zsh-users/zsh-syntax-highlighting)
+base="${HOME}/.oh-my-zsh/plugins"
+
+for package in "${packages[@]}"; do
+  dest="${base}"/$(echo "${package}" | awk -F"/" '{print $2}')
+  echo "${dest}"
+  echo "${package}"
+  remote="https://github.com/${package}.git"
+  echo "${remote}"
+  [[ ! -d "${dest}" ]] && {
+    echo "Installing ${remote}"; git clone "${remote}" "${dest}"
+  }
+  [[ -d "${dest}" ]] && {
+    echo "Updating ${remote}"
+    (cd "${dest}" && git pull --rebase)
+  }
+done
+
+# dotfiles
+ln -fs "${path}/zshrc" "${HOME}/.zshrc"
+ln -fs "${path}/basic.zsh-theme" "${HOME}/.oh-my-zsh/themes/basic.zsh-theme"

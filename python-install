@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+. functions
+
+install pyenv
+
+python3 -m pip install --upgrade pip
+
+pip3 install kubernetes xkcdpass yq auto-editor venv-run
