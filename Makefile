@@ -48,9 +48,11 @@ vim:
 	@echo "#### Installing ${@}..."
 	@./vim-install
 
-vscode: code
+vscode:
 	@echo "#### Installing ${@}..."
 	@./vscode-install
+
+code: vscode
 
 zsh:
 	@echo "#### Installing ${@}..."
