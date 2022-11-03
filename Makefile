@@ -1,4 +1,4 @@
-install: shell gpg git aws kubernetes vim vscode zsh python go
+install: shell ssh gpg git aws kubernetes vim vscode zsh python go
 update: install
 
 check:
@@ -37,6 +37,10 @@ python:
 shell:
 	@echo "#### Installing ${@}..."
 	@./shell-install
+
+ssh:
+	@echo "#### Installing ${@}..."
+	@./ssh-install
 
 vim: vi
 	@echo "#### Installing ${@}..."

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+. functions
+
+path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# dotfiles
+mkdir -p "${HOME}/.ssh"
+ln -fs "${path}/ssh-config" "${HOME}/.ssh/config"
