@@ -41,6 +41,7 @@ make install
 - [kubernetes](https://kubernetes.io/)
 - [python](https://www.python.org/)
 - [go](https://go.dev/)
+- [ssh](https://www.openssh.com/)
 - [vim](https://www.vim.org/)
 - [vscode](https://code.visualstudio.com/)
 - [zsh](http://www.zsh.org/)/[ohmyzsh](https://ohmyz.sh/)
