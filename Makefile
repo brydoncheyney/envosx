@@ -42,7 +42,9 @@ ssh:
 	@echo "#### Installing ${@}..."
 	@./ssh-install
 
-vim: vi
+vi: vim
+
+vim:
 	@echo "#### Installing ${@}..."
 	@./vim-install
 
