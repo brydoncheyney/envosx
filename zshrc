@@ -34,10 +34,8 @@ EDITOR=$(which vim)
 export EDITOR
 
 PATH=/opt/homebrew/bin:${PATH}
-PATH=/opt/homebrew/opt/python@3.10/bin:${PATH}
 PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 PATH=${HOME}/go/bin:${PATH}
-PATH=${HOME}/work/cloudsre/tools/bin:${PATH}
 export PATH
 
 # GPG
@@ -77,3 +75,7 @@ bindkey '^t' transpose-chars
 ##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #export SDKMAN_DIR="$HOME/.sdkman"
 #[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
