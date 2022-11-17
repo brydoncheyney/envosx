@@ -63,6 +63,9 @@ compinit
 
 autoload -U +X bashcompinit && bashcompinit
 
+# aws cli
+type aws_completer >/dev/null && complete -C '/usr/local/bin/aws_completer' aws
+
 # fzf
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
