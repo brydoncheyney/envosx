@@ -63,6 +63,9 @@ compinit
 
 autoload -U +X bashcompinit && bashcompinit
 
+# kubectl
+type kubectl >/dev/null && source <(kubectl completion zsh)
+
 # aws cli
 type aws_completer >/dev/null && complete -C '/usr/local/bin/aws_completer' aws
 
