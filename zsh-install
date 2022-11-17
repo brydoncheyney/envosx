@@ -9,7 +9,11 @@ path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-packages=(zsh-users/zsh-autosuggestions zsh-users/zsh-syntax-highlighting)
+packages=(
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
+)
 base="${HOME}/.oh-my-zsh/plugins"
 
 for package in "${packages[@]}"; do
