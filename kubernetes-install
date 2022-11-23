@@ -2,4 +2,4 @@
 
 . functions
 
-install kubernetes-cli kubectx krew kind dive
+install kubernetes-cli kubectx krew kind dive helm
