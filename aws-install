@@ -2,4 +2,4 @@
 
 . functions
 
-install awscli terraform terragrunt
+install awscli terraform terragrunt groff
