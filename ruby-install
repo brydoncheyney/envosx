@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. functions
+
+install ruby-install chruby
+ruby-install -U -- --enable-shared
+
+gem install krane

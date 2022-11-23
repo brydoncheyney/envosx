@@ -37,12 +37,16 @@ make install
 
 - [aws](https://aws.amazon.com/cli/)
 - [git](https://git-scm.com/)
+- [go](https://go.dev/)
+- [gpg](https://gnupg.org/)
 - [homebrew](https://brew.sh/)
 - [kubernetes](https://kubernetes.io/)
+- [npm](https://www.npmjs.com/)
 - [python](https://www.python.org/)
-- [go](https://go.dev/)
+- [ruby](https://www.ruby-lang.org/en/)
+- shell; various tools and configuration snippets
 - [ssh](https://www.openssh.com/)
 - [vim](https://www.vim.org/)
 - [vscode](https://code.visualstudio.com/)
 - [zsh](http://www.zsh.org/)/[ohmyzsh](https://ohmyz.sh/)
-- shell; various tools and configuration snippets
+

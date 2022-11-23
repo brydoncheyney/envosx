@@ -1,4 +1,4 @@
-install: shell ssh gpg git aws kubernetes vim vscode zsh python go npm
+install: shell ssh gpg git aws kubernetes vim vscode zsh python go npm ruby
 update: install
 
 core: shell ssh git vim zsh
@@ -40,6 +40,10 @@ npm:
 python:
 	@echo "#### Installing ${@}..."
 	@./python-install
+
+ruby:
+	@echo "#### Installing ${@}..."
+	@./ruby-install
 
 shell:
 	@echo "#### Installing ${@}..."
