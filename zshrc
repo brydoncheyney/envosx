@@ -91,3 +91,6 @@ bindkey '^t' transpose-chars
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+chruby ruby-3.1.2
