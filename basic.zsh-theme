@@ -1,5 +1,5 @@
 # prompt
-PROMPT=$'${lead} ${time}${separator}${(e)context}${separator}${current}${(e)has_branch}${(e)branch}${separator}SHLVL=${SHLVL}\n${(e)pprompt}'
+PROMPT=$'${lead} ${time}${separator}${(e)context}${separator}${current}${(e)has_branch}${(e)branch}\n${(e)pprompt}'
 
 # right-hand prompt
 RPROMPT=''
