@@ -54,8 +54,7 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS ZSH_AUTOSUGGEST_STRATEGY ZSH_AUTOSUGGEST_USE_A
 
 alias ll='ls -l'
 alias k=kubectl
-
-#alias jdebug=kubectl exec $(kubectl get pods -oname | shuf | head -n1) -c main -- sh -c 'ps -o pid,vsz,rss,args; echo; grep . /sys/fs/cgroup/memory/memory.*_in_bytes; echo; jcmd 1 GC.heap_info; echo; jmap -histo 1|grep -EA20 "class name|^Total"; echo; echo thread count $(jcmd 1 Thread.print|grep Thread.State|wc -l); java -XX:+PrintFlagsFinal -version 2>&1| grep -w ThreadStackSize; echo; df -k|grep -E "Filesystem|tmpfs"'
+alias eksupdate=$'for cluster in $(aws eks --profile nwdev.admin --region us-east-1 list-clusters | jq -r \'.clusters[]\'); do aws eks --profile nwdev.admin --region us-east-1 update-kubeconfig --name ${cluster}; done'
 
 autoload -U compinit
 compinit
