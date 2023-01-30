@@ -22,7 +22,6 @@ ZSH_THEME='basic'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
   zsh-autosuggestions
-  zsh-completions
   zsh-syntax-highlighting
   ssh-agent
 )
