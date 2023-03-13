@@ -64,6 +64,9 @@ autoload -U +X bashcompinit && bashcompinit
 # kubectl
 type kubectl >/dev/null && source <(kubectl completion zsh)
 
+# helm
+type helm >/dev/null && source <(helm completion zsh)
+
 # argo
 type kubectl-argo-rollout >/dev/null && source <(kubectl argo rollouts completion zsh)
 type argo >/dev/null && source <(argo completion zsh)
