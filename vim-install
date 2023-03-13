@@ -19,6 +19,7 @@ packages=(altercation/vim-colors-solarized
           jistr/vim-nerdtree-tabs
           kien/rainbow_parentheses.vim
           ntpeters/vim-better-whitespace
+          psf/black
           scrooloose/nerdtree
           tpope/vim-fireplace
           tpope/vim-fugitive
