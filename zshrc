@@ -3,13 +3,13 @@ zmodload zsh/zprof
 ZSH=$HOME/.oh-my-zsh
 
 # history
-HISTSIZE=5000               #How many lines of history to keep in memory
-HISTFILE=~/.zsh_history     #Where to save history to disk
-SAVEHIST=5000               #Number of history entries to save to disk
-setopt    histignoredups    #Erase duplicates in the history file
-setopt    appendhistory     #Append history to the history file (no overwriting)
-setopt    sharehistory      #Share history across terminals
-setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
+HISTSIZE=5000               # How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     # Where to save history to disk
+SAVEHIST=5000               # Number of history entries to save to disk
+setopt    histignoredups    # Erase duplicates in the history file
+setopt    appendhistory     # Append history to the history file (no overwriting)
+setopt    sharehistory      # Share history across terminals
+setopt    incappendhistory  # Immediately append to the history file, not just when a term is killed
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,7 +54,7 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS ZSH_AUTOSUGGEST_STRATEGY ZSH_AUTOSUGGEST_USE_A
 
 alias ll='ls -l'
 alias k=kubectl
-alias eksupdate=$'for cluster in $(aws eks --profile nwdev.admin --region us-east-1 list-clusters | jq -r \'.clusters[]\'); do aws eks --profile nwdev.admin --region us-east-1 update-kubeconfig --name ${cluster}; done'
+alias use='kubectl config use-context'
 
 autoload -U compinit
 compinit
@@ -83,6 +83,50 @@ bindkey '\el' down-case-word
 bindkey '\eu' up-case-word
 bindkey '\e#' pound-insert
 bindkey '^t' transpose-chars
+
+function eksupdate {
+  local profile=$1
+  if [ -z "${profile}" ]; then
+    echo "eksupdate AWS_PROFILE"
+    return
+  fi
+  echo ${profile}
+  for cluster in $(aws eks --profile "${profile}" --region us-east-1 list-clusters | jq -r '.clusters[]'); do
+    aws eks --profile "${profile}" --region us-east-1 update-kubeconfig --name "${cluster}" --alias "${cluster}"
+  done
+}
+
+function kall {
+  local ns=$1
+  if [ -z "${ns}" ]; then
+    ns=$(kubectl config view --minify -o jsonpath='{..namespace}')
+  fi
+
+  kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n "${ns}"
+}
+
+function ami_name {
+  local ami_id=$1
+  aws --no-cli-pager ec2 describe-images --image-ids "${ami_id}" --query "Images[].Name" --output text
+}
+
+function ami {
+  local node=$1
+  ami_name $(kubectl get node "${node}" -o json \
+    | jq -r '.metadata.labels["karpenter.k8s.aws/instance-ami-id"]//empty,.metadata.labels["eks.amazonaws.com/nodegroup-image"]//empty')
+}
+
+function amis {
+  ami_ids=($(k get nodes -o json \
+    | jq -r '.items[]|[.metadata.name,.metadata.labels["karpenter.k8s.aws/instance-ami-id"]//empty,.metadata.labels["eks.amazonaws.com/nodegroup-image"]//empty]|@tsv'))
+  for node_id ami_id in ${ami_ids[@]}; do
+    echo "${node_id} ${ami_id} $(ami_name ${ami_id})"
+  done
+}
+
+function contexts {
+  kubectl config get-contexts -o name | awk -F/ '{print $NF}' | sort -u
+}
 
 #-e
 ##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
