@@ -105,14 +105,14 @@ function kall {
   kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n "${ns}"
 }
 
-function ami_name {
+function ami-name {
   local ami_id=$1
   aws --no-cli-pager ec2 describe-images --image-ids "${ami_id}" --query "Images[].Name" --output text
 }
 
 function ami {
   local node=$1
-  ami_name $(kubectl get node "${node}" -o json \
+  ami-name $(kubectl get node "${node}" -o json \
     | jq -r '.metadata.labels["karpenter.k8s.aws/instance-ami-id"]//empty,.metadata.labels["eks.amazonaws.com/nodegroup-image"]//empty')
 }
 
@@ -120,8 +120,13 @@ function amis {
   ami_ids=($(k get nodes -o json \
     | jq -r '.items[]|[.metadata.name,.metadata.labels["karpenter.k8s.aws/instance-ami-id"]//empty,.metadata.labels["eks.amazonaws.com/nodegroup-image"]//empty]|@tsv'))
   for node_id ami_id in ${ami_ids[@]}; do
-    echo "${node_id} ${ami_id} $(ami_name ${ami_id})"
+    echo "${node_id} ${ami_id} $(ami-name ${ami_id})"
   done
+}
+
+function ami-latest {
+  local v=${1:-1.24}
+  ami-name $(aws --no-cli-pager ssm get-parameter --name /aws/service/eks/optimized-ami/${v}/amazon-linux-2/recommended/image_id --query "Parameter.Value" --output text)
 }
 
 function contexts {
