@@ -145,3 +145,6 @@ eval "$(pyenv init -)"
 
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 chruby ruby-3.1.2
+
+# discard duplicates from PATH and path
+typeset -U PATH path
