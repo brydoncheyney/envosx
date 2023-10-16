@@ -17,4 +17,8 @@ git config --global --replace-all user.name "Brydon Cheyney"
 git config --global --replace-all init.defaultbranch main
 git config --global --replace-all gpg.program "$(which gpg)"
 
+# do not push to master by mistake as admin
+git config --global branch.master.pushRemote do_not_push_here
+git config --global branch.main.pushRemote do_not_push_here
+
 mkdir -p ~/work
