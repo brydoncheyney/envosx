@@ -91,3 +91,6 @@ let g:go_highlight_types = 1
 " Allow saving of files as sudo...
 cmap w!! w !sudo tee > /dev/null %
 cmap x!! x !sudo tee > /dev/null %
+
+" To use fzf in Vim, add the following line to your .vimrc:
+set rtp+=/opt/homebrew/opt/fzf
