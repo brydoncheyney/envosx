@@ -37,6 +37,8 @@ PATH=/opt/homebrew/bin:${PATH}
 PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 PATH=${HOME}/go/bin:${PATH}
 PATH=${HOME}/.local/bin:${PATH}
+# gawk > awk
+PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
 export PATH
 
 # GPG
